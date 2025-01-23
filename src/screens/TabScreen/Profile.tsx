@@ -1,26 +1,41 @@
-import { useNavigation, useRoute } from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {signOut} from 'firebase/auth';
+import {auth} from '../../firebase/config';
 
 const Profile: React.FC = () => {
   const navigation = useNavigation();
   const route = useRoute();
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigation.navigate('StartScreen'); // Mengarahkan ke halaman login setelah logout
+    } catch (error) {
+      console.error('Logout failed: ', error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Image source={require("../../assets/arrow-left.png")} style={{width:20,height:30}}></Image>
-      </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image
+            source={require('../../assets/arrow-left.png')}
+            style={{width: 20, height: 30}}
+          />
+        </TouchableOpacity>
         <Text style={styles.headerTitle}>Profile</Text>
       </View>
 
       <View style={styles.profileContainer}>
-        <Image 
-          source={require("../../assets/rio.jpeg")} 
-          style={styles.profileImage} 
+        <Image
+          source={require('../../assets/rio.jpeg')}
+          style={styles.profileImage}
         />
-        <Text style={styles.profileName}>muhammad ramdhan ashari</Text>
-        <Text style={styles.profileEmail}>ramdhanashari1@gmail.com</Text>
+        <Text style={styles.profileName}>rio luigi del niery</Text>
+        <Text style={styles.profileEmail}>rioluigi123@gmail.com</Text>
       </View>
 
       <TouchableOpacity style={styles.editButton}>
@@ -39,7 +54,7 @@ const Profile: React.FC = () => {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.logoutButton}>
+      <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
         <Text style={styles.logoutButtonText}>Logout</Text>
       </TouchableOpacity>
     </View>
@@ -51,19 +66,19 @@ export default Profile;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#C67C4E",
+    backgroundColor: '#C67C4E',
     padding: 20,
   },
   header: {
     alignItems: 'center',
     marginBottom: 30,
-    flexDirection:"row"
+    flexDirection: 'row',
   },
   headerTitle: {
     fontSize: 24,
     fontWeight: '600',
     color: '#2F2D2C',
-    marginLeft:20
+    marginLeft: 20,
   },
   profileContainer: {
     alignItems: 'center',
@@ -85,7 +100,7 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   editButton: {
-    backgroundColor: "black",
+    backgroundColor: 'black',
     padding: 10,
     borderRadius: 10,
     alignItems: 'center',
@@ -113,8 +128,8 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
-    marginVertical:80,
-    marginTop:40
+    marginVertical: 80,
+    marginTop: 40,
   },
   logoutButtonText: {
     color: '#fff',

@@ -197,7 +197,7 @@ const OrderPage = () => {
         renderItem={({item}) => (
           <View style={styles.orderItem}>
             <Text style={styles.orderText}>
-              {item.name} - ${item.price} x {item.quantity}
+              {item.name} x {item.quantity} - ${item.price}
             </Text>
             <View style={styles.actionContainer}>
               <TouchableOpacity

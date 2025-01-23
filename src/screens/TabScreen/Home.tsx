@@ -56,7 +56,7 @@ type DetailNavigationProps = NavigationProp<
   'DetailExample'
 >;
 
-const Coffee = () => {
+const Wings = () => {
   const navigation = useNavigation<DetailNavigationProps>();
 
   const handleProductPress = (product: any) => {
@@ -143,7 +143,7 @@ const Coffee = () => {
   );
 };
 
-export default Coffee;
+export default Wings;
 
 const styles = StyleSheet.create({
   container: {
